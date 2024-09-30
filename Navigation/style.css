@@ -1,0 +1,209 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.Nav{
+    background-color: #712cf9;
+    padding: 15px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.Nav__Container{
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.Nav__Left{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.Logo__SVG{
+    color: white;
+}
+
+.SearchForm__ToggleBtn{
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    padding: 7px;
+    background-color: rgb(105 46 223);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.SearchForm__ToggleBtn:hover{
+    border-color: #ffe484;
+    background: rgba(0,0,0,0.25);
+    box-shadow: 0 0 0 0.25rem rgba(255,228,132,0.4);
+    color: #fff;
+    outline: none;
+}
+
+.SearchForm__SearchGroup{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.SearchForm__SearchIcon{
+    color: white;
+}
+
+.SearchForm__SearchText{
+    color: rgb(212, 209, 209);
+}
+
+.SearchForm__ShortKey{
+    background-color: #4f22a7;
+    color: rgb(212, 209, 209);
+    padding: 4px;
+    font-size: 0.8rem;
+}
+
+.Menu{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.Menu__Link{
+    display: block;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+}
+
+.Menu__Link:hover{
+    color: white;
+}
+
+.Menu__Link--Active{
+    color: white;
+    font-weight: 600;
+}
+
+.Menu__Link--Separate{
+    border-right: 1px solid rgb(195, 195, 195);
+    padding-right: 15px;
+}
+
+.Menu__DropdownBtn{
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.Menu__DropdownBtn:hover{
+    color: white;
+}
+
+.Menu__DropdownBtn::after {
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+
+.Menu__Dropdown{
+    cursor: pointer;
+    display: block;
+    position: relative;
+}
+
+.Menu__Dropdown::after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 30px;
+}
+
+.Menu__DropdownList{
+    background-color: white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+    width: max-content;
+    padding: 5px;
+    top: 25px;
+    right: 0;
+    position: absolute;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    display: none;
+}
+
+.Menu__DropdownLink{
+    display: block;
+    text-decoration: none;
+    color: #212529;
+    padding: 7px 10px;
+    border-radius: 5px;
+}
+
+.Menu__DropdownLink:hover{
+    background-color: rgba(112.520718,44.062154,249.437846, .1);
+}
+
+.Menu__DropdownLink--Active{
+    background-color: rgba(112.520718,44.062154,249.437846, .1);
+}
+
+.Menu__Dropdown:hover .Menu__DropdownList{
+    display: flex;
+}
