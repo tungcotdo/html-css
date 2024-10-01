@@ -35,11 +35,11 @@
         gap: 15px;
     }
     
-    .NavLogo__SVG{
+    .NavLogo-SVG{
         color: white;
     }
     
-    .NavSearch__ToggleBtn{
+    .NavSearch-ToggleBtn{
         display: flex;
         align-items: center;
         gap: 80px;
@@ -50,7 +50,7 @@
         cursor: pointer;
     }
     
-    .NavSearch__ToggleBtn:hover{
+    .NavSearch-ToggleBtn:hover{
         border-color: #ffe484;
         background: rgba(0,0,0,0.25);
         box-shadow: 0 0 0 0.25rem rgba(255,228,132,0.4);
@@ -64,19 +64,134 @@
         gap: 5px;
     }
     
-    .NavSearch__SearchIcon{
+    .NavSearch-SearchIcon{
         color: white;
     }
     
-    .NavSearch__SearchText{
+    .NavSearch-SearchText{
         color: rgb(212, 209, 209);
     }
     
-    .NavSearch__ShortKey{
+    .NavSearch-ShortKey{
         background-color: #4f22a7;
         color: rgb(212, 209, 209);
         padding: 4px;
         font-size: 0.8rem;
+    }
+
+    .NavSearchModal{
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .NavSearchModal::after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(101,108,133,0.8);
+    }
+
+    .NavSearchBox{
+        margin-top: 120px;
+        position: absolute;
+        background-color: #f5f6f7;
+        width: 560px;
+        max-height: 600px;
+        z-index: 2;
+        border-radius: 5px;
+        box-shadow: var(--s1);
+    }
+
+    .NavSearchForm{
+        border: 2px solid var(--c1);
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
+        margin: 15px;
+    }
+
+    .NavSearchResult{
+        margin: 15px;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: 0.3px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .NavSearchTitle{
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: var(--c1);
+        font-weight: 600;
+    }
+
+    .NavSearchContent{
+        display: flex;
+        border: 1px solid #dee2e6;
+        padding: 10px;
+        gap: 10px;
+        border-radius: 5px;
+        background-color: white;
+        color: rgba(33, 37, 41, 0.75);
+    }
+
+    .NavSearchResult-No{
+        display: none;
+        margin: 45px auto;
+        width: fit-content;
+        font-size: .9em;
+        color: rgba(33, 37, 41, 0.75);
+    }
+
+    .NavSearchNote-Text{
+        font-size: 12px;
+    }
+
+    .NavSearchNote{
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 -1px 0 0 #e0e3e8,0 -3px 6px 0 rgba(69,98,155,0.12);
+        display: flex;
+        gap: 25px;
+        align-items: center;
+        color: rgba(33, 37, 41, 0.75);
+    }
+
+    .NavSearchNoteGroup{
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .NavSearchNote-Icon{
+        background-color: rgba(0, 0, 0, 0.1);
+        padding: 2px;
+        border-radius: 2px;
+    }
+
+    .NavSearchForm-Icon{
+        color: var(--c1);
+    }
+
+    .NavSearchForm-Input{
+        height: 100%;
+        font-size: 1.2em;
+        border: none;
+        outline: none;
+        background-color: #f5f6f7;
+        letter-spacing: 0.3px;
     }
     
     .NavMenu{
@@ -85,28 +200,28 @@
         gap: 15px;
     }
     
-    .NavMenu__Link{
+    .NavMenu-Link{
         display: block;
         color: rgba(255, 255, 255, 0.85);
         text-decoration: none;
         padding: 10px 0;
     }
     
-    .NavMenu__Link:hover{
+    .NavMenu-Link:hover{
         color: white;
     }
     
-    .NavMenu__Link--Active{
+    .NavMenu-Link--Active{
         color: white;
         font-weight: 600;
     }
     
-    .NavMenu__Link--Separate{
+    .NavMenu-Link--Separate{
         border-right: 1px solid rgb(195, 195, 195);
         padding-right: 15px;
     }
     
-    .NavMenu__DropdownBtn{
+    .NavMenu-DropdownBtn{
         background: none;
         border: none;
         color: rgba(255, 255, 255, 0.85);
@@ -114,11 +229,11 @@
         cursor: pointer;
     }
     
-    .NavMenu__DropdownBtn:hover{
+    .NavMenu-DropdownBtn:hover{
         color: white;
     }
     
-    .NavMenu__DropdownBtn::after {
+    .NavMenu-DropdownBtn::after {
         display: inline-block;
         margin-left: .255em;
         vertical-align: .255em;
@@ -129,13 +244,13 @@
         border-left: .3em solid transparent;
     }
     
-    .NavMenu__Dropdown{
+    .NavMenu-Dropdown{
         cursor: pointer;
         display: block;
         position: relative;
     }
     
-    .NavMenu__Dropdown::after{
+    .NavMenu-Dropdown::after{
         position: absolute;
         top: 0;
         left: 0;
@@ -159,7 +274,7 @@
         display: none;
     }
     
-    .NavMenu__DropdownLink{
+    .NavMenu-DropdownLink{
         display: block;
         text-decoration: none;
         color: #212529;
@@ -167,20 +282,19 @@
         border-radius: 5px;
     }
     
-    .NavMenu__DropdownLink:hover{
+    .NavMenu-DropdownLink:hover{
         background-color: rgba(112.520718,44.062154,249.437846, .1);
     }
     
-    .NavMenu__DropdownLink--Active{
+    .NavMenu-DropdownLink--Active{
         background-color: rgba(112.520718,44.062154,249.437846, .1);
     }
     
-    .NavMenu__Dropdown:hover .NavMenuDropdownList{
+    .NavMenu-Dropdown:hover .NavMenuDropdownList{
         display: flex;
     }
     
 } /* End media min-width: 794px */
-
 
 @media (min-width: 992px) {
     .NavContainer{
