@@ -27,14 +27,14 @@
 
             <div class="NavCenter">
                 <div class="NavSearch">
-                    <button class="NavSearch-ToggleBtn">
+                    <button class="NavSearch-ToggleModal" data-modal-action="toggle" data-modal-target="#NavSearchModal">
                         <div class="NavSearchGroup">
                             <svg class="NavSearch-SearchIcon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                             <span class="NavSearch-SearchText">Search</span>
                         </div>
                         <span class="NavSearch-ShortKey">Ctrl + K</span>
                     </button>
-                    <div class="NavSearchModal">
+                    <div class="NavSearchModal Modal" id="NavSearchModal">
                         <div class="NavSearchBox">
                             <form class="NavSearchForm">
                                 <svg class="NavSearchForm-Icon" width="25" height="25" viewBox="0 0 20 20" aria-hidden="true"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -104,7 +104,41 @@
         </div><!-- End NavContainer -->
     </nav>
 
+    <script>
+        
+        const MODAL = {
+            Toggle : ({e, b}) => {
+                b.addEventListener("click", function(){
+                    e.classList.add("Show");
+                });
+                
+                e.addEventListener('click', function(event){
+                    if (e !== event.target) return;
+                    e.classList.remove("Show");
+                }, false); 
 
+                document.querySelectorAll('button[data-modal-action="dismiss"]').forEach( dismissBtn => {
+                    dismissBtn.addEventListener("click", function(){
+                        e.classList.remove("Show");
+                    });
+                });
+
+                document.onkeyup = function(press) {
+                    if(press.key === "Escape") {
+                        e.classList.remove("Show");
+                    }
+                }
+            }
+        }
+
+        document.querySelectorAll('button[data-modal-action="toggle"]').forEach( button => {
+            MODAL.Toggle({
+                e : document.querySelector(button.getAttribute('data-modal-target')), 
+                b : button
+            });
+        });
+
+    </script>
 </body>
 </html>
 
