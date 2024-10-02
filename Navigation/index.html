@@ -37,26 +37,20 @@
                     <div class="NavSearchModal Modal" id="NavSearchModal">
                         <div class="NavSearchBox">
                             <form class="NavSearchForm">
-                                <svg class="NavSearchForm-Icon" width="25" height="25" viewBox="0 0 20 20" aria-hidden="true"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                                <input class="NavSearchForm-Input" type="text" placeholder="Search docs">
+                                <svg class="NavSearchForm-Icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                <input class="NavSearchForm-Input" id="NavSearchFormInput" type="text" placeholder="Search docs">
                                 <button type="reset" title="Clear the query" class="NavSearchForm-Reset" aria-label="Clear the query"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
                             </form>
-                            <p class="NavSearchResult-No">No recent searches</p>
-                            <div class="NavSearchResult">
-                                <div class="NavSearchItem">
+                            
+                            <div class="NavSearchResult" id="NavSearchResult">
+                                <p class="NavSearchResult-No">No recent searches</p>
+                                <!-- <div class="NavSearchItem">
                                     <p class="NavSearchTitle">Get started with Bootstrap</p>
                                     <div class="NavSearchContent">
                                         <svg class="NavSearchContent-Icon" width="35" height="35" viewBox="0 0 20 20"><path d="M17 5H3h14zm0 5H3h14zm0 5H3h14z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path></svg>
                                         <p class="NavSearchContent-Desc">... Lorem ipsum dolor <mark>sit amet consectetur</mark> adipisicing elit. Possimus qui nulla id deserunt consectetur laborum obcaecati vel consequuntur quibusdam libero? ...</p>
                                     </div>
-                                </div>
-                                <div class="NavSearchItem">
-                                    <p class="NavSearchTitle">Get started with Bootstrap</p>
-                                    <div class="NavSearchContent">
-                                        <svg class="NavSearchContent-Icon" width="35" height="35" viewBox="0 0 20 20"><path d="M17 5H3h14zm0 5H3h14zm0 5H3h14z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path></svg>
-                                        <p class="NavSearchContent-Desc">... Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus qui nulla id deserunt consectetur laborum obcaecati vel consequuntur quibusdam libero? ...</p>
-                                    </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="NavSearchNote">
                                 <div class="NavSearchNoteGroup">
@@ -103,42 +97,58 @@
 
         </div><!-- End NavContainer -->
     </nav>
-
+    
+    <script src="modal.js"></script>
+    
     <script>
-        
-        const MODAL = {
-            Toggle : ({e, b}) => {
-                b.addEventListener("click", function(){
-                    e.classList.add("Show");
-                });
-                
-                e.addEventListener('click', function(event){
-                    if (e !== event.target) return;
-                    e.classList.remove("Show");
-                }, false); 
+        const searchInput = document.getElementById('NavSearchFormInput');
+        searchInput.addEventListener("keyup", () => {
+            
+            let NavSearchResult = document.getElementById('NavSearchResult');
 
-                document.querySelectorAll('button[data-modal-action="dismiss"]').forEach( dismissBtn => {
-                    dismissBtn.addEventListener("click", function(){
-                        e.classList.remove("Show");
-                    });
-                });
-
-                document.onkeyup = function(press) {
-                    if(press.key === "Escape") {
-                        e.classList.remove("Show");
-                    }
-                }
+            if( searchInput.value == '' ){
+                NavSearchResult.innerHTML = `<p class="NavSearchResult-No">No recent searches</p>`;
+                return;
             }
-        }
+           
+            const posts = [
+                {
+                    title : 'Get started with Bootstrap',
+                    content : 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum quia laudantium ratione tempore praesentium dicta qui esse sequi provident possimus quibusdam explicabo, cum voluptate dolore rerum asperiores saepe, nam blanditiis cupiditate est tempora eligendi placeat! Officiis provident maxime molestiae necessitatibus dignissimos error voluptates quod beatae deserunt at natus quis, quia aliquam ut, aut voluptatum repudiandae odio? Iste tempore natus voluptas ipsa minus dignissimos adipisci deserunt nisi consequatur velit illo dolorem nihil, modi vel a necessitatibus ratione minima maxime iusto quasi cupiditate doloribus? Non voluptate maxime, tempora impedit suscipit delectus a architecto minima, quod sit excepturi dolore amet aperiam, voluptatibus mollitia.'
+                },
+                {
+                    title : 'Get started with Bootstrap',
+                    content : 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum non expedita nulla sunt repudiandae. Veritatis vel asperiores corrupti fugiat! Rerum repudiandae neque perspiciatis nemo explicabo vero porro ut quasi optio!'
+                },
+                {
+                    title : 'Get started with Bootstrap',
+                    content : 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum non expedita nulla sunt repudiandae. Veritatis vel asperiores corrupti fugiat! Rerum repudiandae neque perspiciatis nemo explicabo vero porro ut quasi optio!'
+                }
+            ];
 
-        document.querySelectorAll('button[data-modal-action="toggle"]').forEach( button => {
-            MODAL.Toggle({
-                e : document.querySelector(button.getAttribute('data-modal-target')), 
-                b : button
+            let htmlResult = '';
+            posts.forEach((item, index)=>{
+                let content = item.content;
+                if( content.match(searchInput.value) ){
+                    console.log(content.match(searchInput.value));
+
+                    item.content = content.replace(new RegExp(searchInput.value, 'gi'), '<mark>$&</mark>');
+                    htmlResult +=  `<div class="NavSearchItem">
+                                        <p class="NavSearchTitle">${item.title}</p>
+                                        <div class="NavSearchContent">
+                                            <svg class="NavSearchContent-Icon" width="35" height="35" viewBox="0 0 20 20"><path d="M17 5H3h14zm0 5H3h14zm0 5H3h14z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path></svg>
+                                            <p class="NavSearchContent-Desc">... ${item.content} ...</p>
+                                        </div>
+                                    </div>`;
+                }
             });
+
+            NavSearchResult.innerHTML = htmlResult;
+
         });
 
     </script>
+
 </body>
 </html>
 
