@@ -101,51 +101,57 @@
     <script src="modal.js"></script>
     
     <script>
-        const searchInput = document.getElementById('NavSearchFormInput');
-        searchInput.addEventListener("keyup", () => {
-            
-            let NavSearchResult = document.getElementById('NavSearchResult');
 
-            if( searchInput.value == '' ){
-                NavSearchResult.innerHTML = `<p class="NavSearchResult-No">No recent searches</p>`;
-                return;
-            }
-           
-            const posts = [
-                {
-                    title : 'Get started with Bootstrap',
-                    content : 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum quia laudantium ratione tempore praesentium dicta qui esse sequi provident possimus quibusdam explicabo, cum voluptate dolore rerum asperiores saepe, nam blanditiis cupiditate est tempora eligendi placeat! Officiis provident maxime molestiae necessitatibus dignissimos error voluptates quod beatae deserunt at natus quis, quia aliquam ut, aut voluptatum repudiandae odio? Iste tempore natus voluptas ipsa minus dignissimos adipisci deserunt nisi consequatur velit illo dolorem nihil, modi vel a necessitatibus ratione minima maxime iusto quasi cupiditate doloribus? Non voluptate maxime, tempora impedit suscipit delectus a architecto minima, quod sit excepturi dolore amet aperiam, voluptatibus mollitia.'
-                },
-                {
-                    title : 'Get started with Bootstrap',
-                    content : 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum non expedita nulla sunt repudiandae. Veritatis vel asperiores corrupti fugiat! Rerum repudiandae neque perspiciatis nemo explicabo vero porro ut quasi optio!'
-                },
-                {
-                    title : 'Get started with Bootstrap',
-                    content : 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum non expedita nulla sunt repudiandae. Veritatis vel asperiores corrupti fugiat! Rerum repudiandae neque perspiciatis nemo explicabo vero porro ut quasi optio!'
+        fetch('https://dummyjson.com/posts')
+        .then(res => res.json())
+        .then(response => {
+            const searchInput = document.getElementById('NavSearchFormInput');
+            searchInput.addEventListener("keyup", () => {
+                let NavSearchResult = document.getElementById('NavSearchResult');
+                let SearchValue = searchInput.value;
+
+                if( SearchValue == '' ){
+                    NavSearchResult.innerHTML = `<p class="NavSearchResult-No">No recent searches</p>`;
+                    return;
                 }
-            ];
 
-            let htmlResult = '';
-            posts.forEach((item, index)=>{
-                let content = item.content;
-                if( content.match(searchInput.value) ){
-                    console.log(content.match(searchInput.value));
+                const Posts = response.posts;
 
-                    item.content = content.replace(new RegExp(searchInput.value, 'gi'), '<mark>$&</mark>');
-                    htmlResult +=  `<div class="NavSearchItem">
-                                        <p class="NavSearchTitle">${item.title}</p>
-                                        <div class="NavSearchContent">
-                                            <svg class="NavSearchContent-Icon" width="35" height="35" viewBox="0 0 20 20"><path d="M17 5H3h14zm0 5H3h14zm0 5H3h14z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path></svg>
-                                            <p class="NavSearchContent-Desc">... ${item.content} ...</p>
-                                        </div>
-                                    </div>`;
+                function GetSearchItem(Title, Content, SearchValue, MatchIndex){
+
+                    let Middle = 80;
+                    
+                    if( MatchIndex > Middle ){
+                        Content = '...' + Content.substring(MatchIndex - Middle, MatchIndex + Middle) + '...';
+                    }else{
+                        Content = Content.substring(0, Middle * 2) + '...';
+                    }
+
+                    Content = Content.replace(new RegExp(SearchValue, 'gi'), '<mark>$&</mark>');
+                    return `<div class="NavSearchItem">
+                                <p class="NavSearchTitle">${Title}</p>
+                                <div class="NavSearchContent">
+                                    <svg class="NavSearchContent-Icon" width="25" height="25" viewBox="0 0 20 20"><path d="M17 5H3h14zm0 5H3h14zm0 5H3h14z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path></svg>
+                                    <p class="NavSearchContent-Desc">${Content}</p>
+                                </div>
+                            </div>`;
                 }
+
+                let HTML = '';
+                Posts.forEach(Item => {
+                    let Title = Item.title; let Content = Item.body;
+
+                    if( Content.toUpperCase().indexOf(SearchValue.toUpperCase()) != -1 ){
+                        let MatchIndex = Content.indexOf(SearchValue);
+                        HTML += GetSearchItem(Title, Content, SearchValue, MatchIndex);
+                    }
+                });
+
+                NavSearchResult.innerHTML = HTML;
             });
 
-            NavSearchResult.innerHTML = htmlResult;
-
         });
+
 
     </script>
 

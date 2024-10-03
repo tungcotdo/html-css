@@ -109,7 +109,7 @@
         position: absolute;
         background-color: #f5f6f7;
         width: 560px;
-        max-height: 600px;
+        max-height: 400px;
         z-index: 2;
         border-radius: 5px;
         box-shadow: var(--s1);
@@ -133,6 +133,8 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+        max-height: 250px;
+        overflow-y: auto;
     }
 
     .NavSearchTitle{
@@ -147,15 +149,11 @@
         grid-template-columns: 20px calc(100% - 30px);
         border: 1px solid #dee2e6;
         padding: 10px;
-        gap: 10px;
+        gap: 15px;
         border-radius: 5px;
         background-color: white;
         color: rgba(33, 37, 41, 0.75);
-    }
-
-    .NavSearchContent-Desc{
-        height: 32px;
-        overflow: hidden;
+        align-items: center;
     }
 
     .NavSearchResult-No{
