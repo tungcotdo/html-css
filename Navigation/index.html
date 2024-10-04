@@ -26,7 +26,7 @@
             </div><!-- End NavLeft -->
 
             <div class="NavCenter">
-                <div class="NavSearch">
+                <div class="NavSearch" id="NavSearch">
                     <button class="NavSearch-ToggleModal" data-modal-action="toggle" data-modal-target="#NavSearchModal">
                         <div class="NavSearchGroup">
                             <svg class="NavSearch-SearchIcon" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -99,61 +99,7 @@
     </nav>
     
     <script src="modal.js"></script>
-    
-    <script>
-
-        fetch('https://dummyjson.com/posts')
-        .then(res => res.json())
-        .then(response => {
-            const searchInput = document.getElementById('NavSearchFormInput');
-            searchInput.addEventListener("keyup", () => {
-                let NavSearchResult = document.getElementById('NavSearchResult');
-                let SearchValue = searchInput.value;
-
-                if( SearchValue == '' ){
-                    NavSearchResult.innerHTML = `<p class="NavSearchResult-No">No recent searches</p>`;
-                    return;
-                }
-
-                const Posts = response.posts;
-
-                function GetSearchItem(Title, Content, SearchValue, MatchIndex){
-
-                    let Middle = 80;
-                    
-                    if( MatchIndex > Middle ){
-                        Content = '...' + Content.substring(MatchIndex - Middle, MatchIndex + Middle) + '...';
-                    }else{
-                        Content = Content.substring(0, Middle * 2) + '...';
-                    }
-
-                    Content = Content.replace(new RegExp(SearchValue, 'gi'), '<mark>$&</mark>');
-                    return `<div class="NavSearchItem">
-                                <p class="NavSearchTitle">${Title}</p>
-                                <div class="NavSearchContent">
-                                    <svg class="NavSearchContent-Icon" width="25" height="25" viewBox="0 0 20 20"><path d="M17 5H3h14zm0 5H3h14zm0 5H3h14z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linejoin="round"></path></svg>
-                                    <p class="NavSearchContent-Desc">${Content}</p>
-                                </div>
-                            </div>`;
-                }
-
-                let HTML = '';
-                Posts.forEach(Item => {
-                    let Title = Item.title; let Content = Item.body;
-
-                    if( Content.toUpperCase().indexOf(SearchValue.toUpperCase()) != -1 ){
-                        let MatchIndex = Content.indexOf(SearchValue);
-                        HTML += GetSearchItem(Title, Content, SearchValue, MatchIndex);
-                    }
-                });
-
-                NavSearchResult.innerHTML = HTML;
-            });
-
-        });
-
-
-    </script>
+    <script src="search.js"></script>
 
 </body>
 </html>
