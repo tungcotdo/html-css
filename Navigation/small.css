@@ -1,0 +1,221 @@
+@media (max-width: 793.99px) {
+    #NavLg{
+        display: none;
+    }
+
+    #NavSm{
+        display: block;
+    }
+
+    .NavSmContainer{
+        margin: 0 auto;
+        padding: 0 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .NavSm{
+        background-color: var(--c1);
+        padding: 15px 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        box-shadow: var(--s1);
+    }
+
+    .NavSmLeft{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .NavSmRight{
+        display: flex;
+        gap: 10px;
+    }
+    
+    .NavSmLogo-SVG{
+        color: white;
+        width:35px;
+        height:35px;
+    }
+
+    .NavSmSearch,
+    .NavSmMenuBtn{
+        background: none;
+        outline: none;
+        border: none;
+    }
+
+    .NavSmSearch-SearchIcon{
+        color: white;
+        width: 20px;
+        height: 20px;
+    }
+
+    .NavSmMenuBtn-Threedots{
+        color: white;
+        width: 20px;
+        height: 20px;
+    }
+
+    @keyframes modalFromLeft {
+        from {
+           right: -100%;
+        }
+        to {
+            right: 0px;
+        }
+    }
+
+    .NavSmMenuModal{
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        justify-content: right;
+        display: none;
+    }
+
+    .NavSmMenuModal::after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(101,108,133,0.8);
+    }
+
+    .NavSmMenuModal.Show{
+        display: flex;
+    }
+
+    .NavSmMenuBox{
+        position: absolute;
+        background-color: var(--c1);
+        color: white;
+        height: 100vh;
+        max-width: 340px;
+        z-index: 2;
+        box-shadow: var(--s1);
+        padding: 25px;
+        animation: modalFromLeft 0.5s;
+    }
+
+    .NavSmMenuHeader{
+        border-bottom: 1px solid var(--cb);
+        padding-bottom: 15px;
+    }
+
+    .NavSmMenuGroup{
+        border-bottom: 1px solid var(--cb);
+        padding: 30px 0;
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .NavSmMenuHeader-Title{
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .NavSmMenu-Link{
+        text-decoration: none;
+        color: white;
+    }
+
+    .NavSmMenu-DropdownBtn{
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    
+    .NavSmMenu-DropdownBtn:hover{
+        color: white;
+    }
+    
+    .NavSmMenu-DropdownBtn::after {
+        display: inline-block;
+        margin-left: .255em;
+        vertical-align: .255em;
+        content: "";
+        border-top: .3em solid;
+        border-right: .3em solid transparent;
+        border-bottom: 0;
+        border-left: .3em solid transparent;
+    }
+    
+    .NavSmMenu-Dropdown{
+        cursor: pointer;
+        display: block;
+        position: relative;
+    }
+    
+    .NavSmMenu-Dropdown::after{
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 30px;
+    }
+    
+    .NavSmMenuDropdownList{
+        background-color: white;
+        box-shadow: var(--s1);
+        width: max-content;
+        padding: 5px;
+        top: 25px;
+        left: 0;
+        position: absolute;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        display: none;
+    }
+    
+    .NavSmMenu-DropdownLink{
+        display: block;
+        text-decoration: none;
+        color: #212529;
+        padding: 7px 10px;
+        border-radius: 5px;
+    }
+    
+    .NavSmMenu-DropdownLink:hover{
+        background-color: rgba(112.520718,44.062154,249.437846, .1);
+    }
+    
+    .NavSmMenu-DropdownLink--Active{
+        background-color: var(--c1);
+        color: white;
+    }
+    
+    .NavSmMenu-Dropdown:hover .NavSmMenuDropdownList{
+        display: flex;
+    }
+
+    .NavSmMenuHeader{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .NavSmMenu-Close{
+        background: none;
+        border: none;
+        color: white;
+        margin-right: -15px;
+    }
+
+    .NavSmMenu-Close:hover{
+        cursor: pointer;
+    }
+}
